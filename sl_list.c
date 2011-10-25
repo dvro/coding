@@ -45,5 +45,35 @@ void destroy_sl_list (struct sl_list_node **head, void *free_data(void *))
 }
 
 
+struct sl_list_node *m_to_last (struct sl_list_node *head, int m)
+{
+	if (head == NULL)
+		return NULL;
+
+	struct sl_list_node *tmp = head;
+	int i = 0;
+	while (i < m) {
+		if (tmp != NULL)
+			tmp = tmp->next;
+		else
+			return NULL;
+		i++;
+	}
+
+	struct sl_list_node *snd = head;
+	while (tmp->next != NULL) {
+		tmp = tmp->next;
+		snd = snd->next;
+	}
+
+	return snd;
+}
+
+
+
+
+
+
+
 
 
