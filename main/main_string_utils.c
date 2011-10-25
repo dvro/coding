@@ -56,5 +56,22 @@ int main (void)
 	free(str);
 
 
+	str = strdup("the sky is blue");
+	reverse_words(&str);
+	printf("'the sky is blue' $ '%s'\n", str);
+	free(str);
+	str = strdup(" the sky is blue");
+	reverse_words(&str);
+	printf("' the sky is blue' $ '%s'\n", str);
+	free(str);
+	str = strdup("the sky is blue ");
+	reverse_words(&str);
+	printf("'the sky is blue ' $ '%s'\n", str);
+	free(str);
+	str = strdup("no_meio_do_caminho    havia_uma_pedra");
+	reverse_words(&str);
+	printf("'no_meio_do_caminho    havia_uma_pedra' $ '%s'\n", str);
+	free(str);
+
 	return 0;
 }

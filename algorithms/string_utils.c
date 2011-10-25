@@ -63,9 +63,56 @@ int int_to_str (int value, char **str)
 	return 1;
 }
 
+
+int reverse_letters (char **str, int i, int j)
+{
+	if (*str == NULL)
+		return 0;
+
+	if (i > j)
+		return 0;
+
+	if (i < 0 || j > strlen(*str) - 1)
+		return 0;
+
+	while (i < j) {
+		char temp = (*str)[i];
+		(*str)[i] = (*str)[j];
+		(*str)[j] = temp;
+		i++;
+		j--;
+	}
+
+	return 1;
+}
+
 int reverse_words (char **str)
 {
+	if (*str == NULL)
+		return 0;
+	if (strlen(*str) < 2)
+		return 1;
 
+	char *string = *str;
+	int i = 0;
+	int j = 1;
+
+	while (string[i] != '\0') {
+		while (string[i] == ' ' && string[i] != '\0')
+			i++;
+
+		j = i;
+		while (string[j] != ' ' && string[j] != '\0')
+			j++;
+
+		if (i != j) {
+			reverse_letters(&string, i, --j);
+			i = ++j;
+		}
+	}
+
+	reverse_letters(&string, 0, strlen(string) - 1);
+	return 1;
 }
 
 int large_block (char *str, int *index)
