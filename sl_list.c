@@ -44,8 +44,7 @@ void destroy_sl_list (struct sl_list_node **head, void *free_data(void *))
 	}
 }
 
-
-struct sl_list_node *m_to_last (struct sl_list_node *head, int m)
+struct sl_list_node *find_m_to_last (struct sl_list_node *head, int m)
 {
 	if (head == NULL)
 		return NULL;
@@ -69,7 +68,21 @@ struct sl_list_node *m_to_last (struct sl_list_node *head, int m)
 	return snd;
 }
 
+struct sl_list_node *find_middle (struct sl_list_node *head)
+{
+	if (head == NULL)
+		return NULL;
 
+	struct sl_list_node *fst = head;
+	struct sl_list_node *snd = head;
+
+	while (fst != NULL && fst->next != NULL) {
+		fst = fst->next->next;
+		snd = snd->next;
+	}
+	
+	return snd;
+}
 
 
 
