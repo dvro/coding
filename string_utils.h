@@ -1,6 +1,5 @@
-#include <stdlib.h>
-#include <string.h>
-
+#ifndef STRING_UTILS_H
+#define STRING_UTILS_H
 
 int str_to_int (char *str, int value *);
 
@@ -10,4 +9,5 @@ int reverse_words (char **str);
 
 int large_block (char *str, int *index);
 
+#endif
 
