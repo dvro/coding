@@ -13,8 +13,13 @@ int main (void)
 	root->right->left = create_tree("6");
 	root->right->right = create_tree("7");
 	root->right->right->right = create_tree("8");
-
+	
+	printf("print levels\n");
 	print_levels(root);
+	printf("print pre-order\n");
+	print_pre_order(root);
+	printf("\n");
+	printf("tree_size %d\n",tree_size(root));
 	delete_tree(&root);
 
 	return 0;

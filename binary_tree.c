@@ -60,15 +60,15 @@ void print_levels(struct tree_node *root)
 	}
 
 	int last_level = 0;
-	int *current_level = (int *) malloc(sizeof(int));
 
 	struct queue *node_q = create_queue();
 	in_queue(node_q, root, sizeof(struct tree_node));
 
 	struct queue *level_q = create_queue();
 	in_queue(level_q, &last_level, sizeof(int));
-	
+
 	while (!is_empty(node_q)) {
+		int *current_level;
 		
 		struct tree_node *tmp;
 		de_queue(node_q, (void **) &tmp);
@@ -91,26 +91,15 @@ void print_levels(struct tree_node *root)
 			in_queue(node_q, tmp->right,sizeof(struct tree_node));
 			in_queue(level_q, (void *)current_level, sizeof(int));
 		}
-
-		free(tmp->data);
+		
 		free(tmp);
+		free(current_level);
+
 	}
 
-	free(current_level);
 	destroy_queue(&node_q);
 	destroy_queue(&level_q);
 	
 	printf(";\n");
 }
-
-
-
-
-
-
-
-
-
-	
-
 
