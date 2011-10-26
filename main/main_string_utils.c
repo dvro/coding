@@ -191,7 +191,6 @@ int main (void)
 	printf("'%s'\n", str);
 	free(str);
 
-
 	str = strdup("era uma casa muito engracada nao tinha teto");
 	status = remove_chars(str, "aeiou");
 	printf("'%s'\n", str);
@@ -199,3 +198,4 @@ int main (void)
 
 	return 0;
 }
+
