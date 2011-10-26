@@ -151,5 +151,73 @@ int large_block (char *str, int *index)
 	return 1;
 }
 
+int char_most_repeated (char *str, char *output, int *index, int *count)
+{
+	if (!str)
+		return 0;
+
+	int *hashtable = calloc(256, sizeof(int));
+	if (!hashtable)
+		return 0;
+
+	int i = 0;
+	int max_count = 0;
+	char most_repeated = '\0';
+
+	while (str[i] != '\0') {
+		hashtable[str[i]] = hashtable[str[i]] + 1;
+		if (hashtable[str[i]] > max_count) {
+			max_count = hashtable[str[i]];
+			most_repeated = hashtable[str[i]];
+		}
+		i++;
+	}
+
+	i = 0;
+	while (str[i] != most_repeated)
+		i++;
+
+	if (index != NULL)	*index = i;
+	if (output != NULL)	*output = most_repeated;
+	if (count != NULL)	*count = max_count;
+	
+	free(hashtable);
+	return 1;
+}
+
+int char_m_times_occurred (char *str, int m, char *output, int *index)
+{
+	if (!str)
+		return 0;
+
+	if (m <= 0)
+		return 0;
+
+	int *hashtable = calloc(256, sizeof(int));
+	if (!hashtable)
+		return 0;
+
+	int i = 0;
+	while (str[i] != '\0') {
+		hashtable[str[i]] = hashtable[str[i]] + 1;
+		i++;
+	}
+
+	i = 0;
+	while (str[i] != '\0' && hashtable[str[i]] != m)
+		i++;
+
+	if (str[i] != '\0') {
+		if (index != NULL)	*index = i;
+		if (output != NULL)	*output = str[i];
+	}
+
+	free(hashtable);
+	return 1;
+}
+
+
+
+
 
 
