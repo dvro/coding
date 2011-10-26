@@ -164,6 +164,38 @@ int main (void)
 	printf("%d '%s'\n", status, str);
 	free(str);
 
+	str = strdup("empty \"\"quotes");
+	status = remove_quotes(str);
+	printf("%d '%s'\n", status, str);
+	free(str);
+
+	str = strdup("one quote here ->\"<-");
+	status = remove_quotes(str);
+	printf("%d '%s'\n", status, str);
+	free(str);
+
+
+	printf("\nremove_substring\n");
+	str = strdup("a1a2a3a4a5a6a7a8a9a");
+	status = remove_substring(str, "a");
+	printf("'%s'\n", str);
+	free(str);
+	
+	str = strdup("i used to rule the world");
+	status = remove_substring(str, "used");
+	printf("'%s'\n", str);
+	free(str);
+
+	str = strdup("come and see what is going on here");
+	status = remove_substring(str, "a");
+	printf("'%s'\n", str);
+	free(str);
+
+
+	str = strdup("era uma casa muito engracada nao tinha teto");
+	status = remove_chars(str, "aeiou");
+	printf("'%s'\n", str);
+	free(str);
 
 	return 0;
 }

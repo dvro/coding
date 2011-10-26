@@ -215,6 +215,19 @@ int first_char_m_times_occurred (char *str, int m, char *output, int *index)
 	return 1;
 }
 
+void move (char *str, int i, int j) {
+	int len = strlen(str);
+	if (j > len)
+		return;
+	if (i == j)
+		return;
+
+	while (j <= len) {
+		str[i] = str[j];
+		i++;
+		j++;
+	}
+}
 
 int remove_quotes (char *str)
 {
@@ -241,7 +254,7 @@ int remove_quotes (char *str)
 		if (str[j] == '\0')
 			return flag;
 
-		strcpy(str+i, str+j+1);
+		move (str, i, j+1);
 		start = i;
 		flag = 1;
 	}
@@ -249,11 +262,59 @@ int remove_quotes (char *str)
 	return flag;
 }
 
-int remove_substring (char *str, char *substring);
+int remove_substring (char *str, char *substring)
+{
+	if (!str || !substring)
+		return 0;
 
+	int str_len = strlen(str);
+	int sub_len = strlen(substring);
 
+	if (str_len == 0 || sub_len == 0 || str_len < sub_len)
+		return 0;
+	
+	int i = 0;
+	int flag = 0;
+	while (i <= (str_len - sub_len)) {
+		if (strncmp(str+i, substring, sub_len) == 0) {
+			move(str, i, i+sub_len);
+			str_len = str_len - sub_len;
+			if(flag == 0)
+				flag = 1;
+		}
+		i++;
+	}
 
-int remove_chars (char *str, char *chars);
+	return flag;
+}
 
+int remove_chars (char *str, char *chars)
+{
+	if (!str)
+		return 0;
+	if (!chars)
+		return 0;
+
+	int *hashtable = calloc(256, sizeof(int));
+	if (!hashtable)
+		return 0;
+
+	int i;
+	for (i = 0; i < strlen(chars); i++) {
+		hashtable[chars[i]] = 1;
+	}
+
+	i = 0;
+	int len = strlen(str);
+	while (i < len) {
+		if (hashtable[str[i]] == 1) {
+			move(str, i, i+1);
+		}
+		i++;
+	}
+
+	free(hashtable);
+	return 1;
+}
 
 
