@@ -55,23 +55,43 @@ int main (void)
 	printf("%d = %s\n", value, str);
 	free(str);
 
-
 	str = strdup("the sky is blue");
-	reverse_words(&str);
+	reverse_words(str);
 	printf("'the sky is blue' $ '%s'\n", str);
 	free(str);
 	str = strdup(" the sky is blue");
-	reverse_words(&str);
+	reverse_words(str);
 	printf("' the sky is blue' $ '%s'\n", str);
 	free(str);
 	str = strdup("the sky is blue ");
-	reverse_words(&str);
+	reverse_words(str);
 	printf("'the sky is blue ' $ '%s'\n", str);
 	free(str);
 	str = strdup("no_meio_do_caminho    havia_uma_pedra");
-	reverse_words(&str);
+	reverse_words(str);
 	printf("'no_meio_do_caminho    havia_uma_pedra' $ '%s'\n", str);
 	free(str);
+	str = strdup("1234");
+	reverse_words(str);
+	printf("'1234' $ '%s'\n", str);
+	free(str);
+
+	int index = -1;
+	status = large_block("", &index);
+	printf("(0,%d) index = (-1,%d)\n", status, index);
+	char *tmp = NULL;
+	status = large_block(tmp, &index);
+	printf("(0,%d) index = (-1,%d)\n", status, index);
+	status = large_block("abcd", &index);
+	printf("(1,%d) index = (0,%d)\n", status, index);
+	status = large_block("aaabbcc", &index);
+	printf("(1,%d) index = (0,%d)\n", status, index);
+	status = large_block("aabbbcc", &index);
+	printf("(1,%d) index = (2,%d)\n", status, index);
+	status = large_block("aabbccc", &index);
+	printf("(1,%d) index = (4,%d)\n", status, index);
+	status = large_block("abababababcccabababababa",& index);
+	printf("(1,%d) index = (10,%d)\n", status, index);
 
 	return 0;
 }

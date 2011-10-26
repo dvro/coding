@@ -64,21 +64,21 @@ int int_to_str (int value, char **str)
 }
 
 
-int reverse_letters (char **str, int i, int j)
+int reverse_letters (char *str, int i, int j)
 {
-	if (*str == NULL)
+	if (str == NULL)
 		return 0;
 
 	if (i > j)
 		return 0;
 
-	if (i < 0 || j > strlen(*str) - 1)
+	if (i < 0 || j > strlen(str) - 1)
 		return 0;
 
 	while (i < j) {
-		char temp = (*str)[i];
-		(*str)[i] = (*str)[j];
-		(*str)[j] = temp;
+		char temp = str[i];
+		str[i] = str[j];
+		str[j] = temp;
 		i++;
 		j--;
 	}
@@ -86,38 +86,69 @@ int reverse_letters (char **str, int i, int j)
 	return 1;
 }
 
-int reverse_words (char **str)
+int reverse_words (char *str)
 {
-	if (*str == NULL)
+	if (str == NULL)
 		return 0;
-	if (strlen(*str) < 2)
+	if (strlen(str) < 2)
 		return 1;
 
-	char *string = *str;
 	int i = 0;
 	int j = 1;
 
-	while (string[i] != '\0') {
-		while (string[i] == ' ' && string[i] != '\0')
+	while (str[i] != '\0') {
+		while (str[i] == ' ' && str[i] != '\0')
 			i++;
 
 		j = i;
-		while (string[j] != ' ' && string[j] != '\0')
+		while (str[j] != ' ' && str[j] != '\0')
 			j++;
 
 		if (i != j) {
-			reverse_letters(&string, i, --j);
+			reverse_letters(str, i, --j);
 			i = ++j;
 		}
 	}
 
-	reverse_letters(&string, 0, strlen(string) - 1);
+	reverse_letters(str, 0, strlen(str) - 1);
 	return 1;
 }
 
 int large_block (char *str, int *index)
 {
+	if (str == NULL)
+		return 0;
 
+	int len = strlen(str);
+	if (len == 0)
+		return 0;
+	
+
+	int max_count_index = 0;
+	int max_count = 0;
+	
+	int current_count = 0;
+	int current_count_index = 0;
+
+	int i = 0;
+
+	while (i <= len) {
+		if (str[i] == str[current_count_index]) {
+			current_count++;
+		} else {
+			if (current_count > max_count) {
+				max_count = current_count;
+				max_count_index = current_count_index;
+			}
+			current_count_index = i;
+			current_count = 1;
+		}
+		i++;
+	}
+
+	*index = max_count_index;
+
+	return 1;
 }
 
 
