@@ -90,8 +90,35 @@ int main (void)
 	printf("(1,%d) index = (2,%d)\n", status, index);
 	status = large_block("aabbccc", &index);
 	printf("(1,%d) index = (4,%d)\n", status, index);
-	status = large_block("abababababcccabababababa",& index);
+	status = large_block("abababababcccabababababa", &index);
 	printf("(1,%d) index = (10,%d)\n", status, index);
+
+
+	char output = '\0';
+	index = 0;
+	int count = 0;
+	str = "ababababaccccccababababab";
+	status = char_most_repeated(str, &output, &index, &count);
+	printf("(1,%d) (a,%c) (0,%d) (10,%d)\n", status, output, index, count);
+	str = "ccbaaa";
+	status = char_most_repeated(str, &output, &index, &count);
+	printf("(1,%d) (a,%c) (3,%d) (3,%d)\n", status, output, index, count);
+	str = "ccaaabb";
+	status = char_most_repeated(str, &output, &index, &count);
+	printf("(1,%d) (a,%c) (2,%d) (3,%d)\n", status, output, index, count);
+	str = "aaabbcc";
+	status = char_most_repeated(str, &output, &index, &count);
+	printf("(1,%d) (a,%c) (0,%d) (3,%d)\n", status, output, index, count);
+	str = "";
+	status = char_most_repeated(str, &output, &index, &count);
+	printf("(0,%d) (a,%c) (0,%d) (3,%d)\n", status, output, index, count);
+	str = NULL;
+	status = char_most_repeated(str, &output, &index, &count);
+	printf("(0,%d) (a,%c) (0,%d) (3,%d)\n", status, output, index, count);
+	str = "a";
+	status = char_most_repeated(str, &output, &index, &count);
+	printf("(1,%d) (a,%c) (0,%d) (1,%d)\n", status, output, index, count);
+	
 
 	return 0;
 }

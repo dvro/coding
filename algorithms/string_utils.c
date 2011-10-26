@@ -153,7 +153,7 @@ int large_block (char *str, int *index)
 
 int char_most_repeated (char *str, char *output, int *index, int *count)
 {
-	if (!str)
+	if (str == NULL || strlen(str) == 0)
 		return 0;
 
 	int *hashtable = calloc(256, sizeof(int));
@@ -168,7 +168,7 @@ int char_most_repeated (char *str, char *output, int *index, int *count)
 		hashtable[str[i]] = hashtable[str[i]] + 1;
 		if (hashtable[str[i]] > max_count) {
 			max_count = hashtable[str[i]];
-			most_repeated = hashtable[str[i]];
+			most_repeated = str[i];
 		}
 		i++;
 	}
@@ -177,15 +177,15 @@ int char_most_repeated (char *str, char *output, int *index, int *count)
 	while (str[i] != most_repeated)
 		i++;
 
-	if (index != NULL)	*index = i;
-	if (output != NULL)	*output = most_repeated;
-	if (count != NULL)	*count = max_count;
+	*index = i;
+	*output = most_repeated;
+	*count = max_count;
 	
 	free(hashtable);
 	return 1;
 }
 
-int char_m_times_occurred (char *str, int m, char *output, int *index)
+int first_char_m_times_occurred (char *str, int m, char *output, int *index)
 {
 	if (!str)
 		return 0;
