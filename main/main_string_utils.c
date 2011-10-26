@@ -142,5 +142,28 @@ int main (void)
 	status = first_char_m_times_occurred(str, 2, &output, &index);
 	printf("(0,%d) (X,%c) (X,%d)\n", status, output, index);
 
+
+	printf("\nremove_quotes\n");
+	str = strdup("\"where there is a sea, there pirates be\"");
+	status = remove_quotes(str);
+	printf("%d '%s'\n", status, str);
+	free(str);
+
+	str = strdup("\"walk on\" he said.");
+	status = remove_quotes(str);
+	printf("%d '%s'\n", status, str);
+	free(str);
+
+	str = strdup("he said \"walk on\"");
+	status = remove_quotes(str);
+	printf("%d '%s'\n", status, str);
+	free(str);
+
+	str = strdup("no quotes here");
+	status = remove_quotes(str);
+	printf("%d '%s'\n", status, str);
+	free(str);
+
+
 	return 0;
 }

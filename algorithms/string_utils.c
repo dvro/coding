@@ -218,7 +218,7 @@ int first_char_m_times_occurred (char *str, int m, char *output, int *index)
 
 int remove_quotes (char *str)
 {
-	char quote = "\"";
+	char quote = '\"';
 	int flag = 0;
 	
 	if (str == NULL || strlen(str) == 0)
@@ -228,14 +228,14 @@ int remove_quotes (char *str)
 
 	while (str[start] != '\0') {
 		int i = start;
-		while (str[i] != '\0' && str[j] = quote)
+		while (str[i] != '\0' && str[i] != quote)
 			i++;
 
 		if (str[i] == '\0')
 			return flag;
 
 		int j = i + 1;
-		while (str[j] != '\0' && str[j] = quote)
+		while (str[j] != '\0' && str[j] != quote)
 			j++;
 		
 		if (str[j] == '\0')
