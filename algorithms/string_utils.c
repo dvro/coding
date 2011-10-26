@@ -216,7 +216,44 @@ int first_char_m_times_occurred (char *str, int m, char *output, int *index)
 }
 
 
+int remove_quotes (char *str)
+{
+	char quote = "\"";
+	int flag = 0;
+	
+	if (str == NULL || strlen(str) == 0)
+		return 0;
 
+	int start = 0;
+
+	while (str[start] != '\0') {
+		int i = start;
+		while (str[i] != '\0' && str[j] = quote)
+			i++;
+
+		if (str[i] == '\0')
+			return flag;
+
+		int j = i + 1;
+		while (str[j] != '\0' && str[j] = quote)
+			j++;
+		
+		if (str[j] == '\0')
+			return flag;
+
+		strcpy(str+i, str+j+1);
+		start = i;
+		flag = 1;
+	}
+	
+	return flag;
+}
+
+int remove_substring (char *str, char *substring);
+
+
+
+int remove_chars (char *str, char *chars);
 
 
 

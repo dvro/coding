@@ -17,9 +17,9 @@ int first_char_m_times_occurred (char *str, int m, char *output, int *index);
 
 int remove_quotes (char *str);
 
-int remove_chars (char *str, char *chars);
+int remove_substring (char *str, char *substring);
 
-int remove_substring (char *str, char *chars);
+int remove_chars (char *str, char *chars);
 
 #endif
 
