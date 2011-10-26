@@ -7,6 +7,8 @@ int main (void)
 {
 	int value = -1;
 	int status = -1;
+
+	printf("\nstr_to_int\n");
 	status = str_to_int("", &value);
 	printf("status (0,%d); value = (-1, %d)\n", status, value);
 	status = str_to_int(NULL, &value);
@@ -29,9 +31,7 @@ int main (void)
 	status = str_to_int("123a", &value);
 	printf("status (0,%d); value = (-1, %d)\n", status, value);
 	
-
-
-	printf("\nint to string\n\n");
+	printf("\nint_to_str\n");
 	char *str = calloc(100,sizeof(char));
 	value = -1;
 	status = int_to_str(value, &str);
@@ -55,6 +55,7 @@ int main (void)
 	printf("%d = %s\n", value, str);
 	free(str);
 
+	printf("\nreverse_words\n");
 	str = strdup("the sky is blue");
 	reverse_words(str);
 	printf("'the sky is blue' $ '%s'\n", str);
@@ -76,6 +77,7 @@ int main (void)
 	printf("'1234' $ '%s'\n", str);
 	free(str);
 
+	printf("\nlarge_block\n");
 	int index = -1;
 	status = large_block("", &index);
 	printf("(0,%d) index = (-1,%d)\n", status, index);
@@ -93,8 +95,7 @@ int main (void)
 	status = large_block("abababababcccabababababa", &index);
 	printf("(1,%d) index = (10,%d)\n", status, index);
 
-	printf("\n\n");
-
+	printf("\nchar_most_repeated\n");
 	char output = '\0';
 	index = 0;
 	int count = 0;
@@ -120,8 +121,7 @@ int main (void)
 	status = char_most_repeated(str, &output, &index, &count);
 	printf("(1,%d) (a,%c) (0,%d) (1,%d)\n", status, output, index, count);
 
-	printf("\n\n");
-
+	printf("\nfirst_char_m_times_occurred\n");
 	str = "abcdbcd";
 	status = first_char_m_times_occurred(str, 1, &output, &index);
 	printf("(1,%d) (a,%c) (0,%d)\n", status, output, index);
@@ -136,11 +136,11 @@ int main (void)
 
 	str = "";
 	status = first_char_m_times_occurred(str, 2, &output, &index);
-	printf("(0,%d) (b,%c) (1,%d)\n", status, output, index);
+	printf("(0,%d) (X,%c) (X,%d)\n", status, output, index);
 
 	str = NULL;
 	status = first_char_m_times_occurred(str, 2, &output, &index);
-	printf("(0,%d) (b,%c) (1,%d)\n", status, output, index);
+	printf("(0,%d) (X,%c) (X,%d)\n", status, output, index);
 
 	return 0;
 }

@@ -53,8 +53,7 @@ int int_to_str (int value, char **str)
 		m = m / 10;
 
 	while (m > 0) {
-		s[index] = (((value % (m * 10)) / m) + '0');
-		index++;
+		s[index++] = (((value % (m * 10)) / m) + '0');
 		m = m/10;
 	}
 	s[index] = '\0';	
