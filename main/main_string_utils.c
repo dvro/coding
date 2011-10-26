@@ -93,6 +93,7 @@ int main (void)
 	status = large_block("abababababcccabababababa", &index);
 	printf("(1,%d) index = (10,%d)\n", status, index);
 
+	printf("\n\n");
 
 	char output = '\0';
 	index = 0;
@@ -118,7 +119,28 @@ int main (void)
 	str = "a";
 	status = char_most_repeated(str, &output, &index, &count);
 	printf("(1,%d) (a,%c) (0,%d) (1,%d)\n", status, output, index, count);
+
+	printf("\n\n");
+
+	str = "abcdbcd";
+	status = first_char_m_times_occurred(str, 1, &output, &index);
+	printf("(1,%d) (a,%c) (0,%d)\n", status, output, index);
 	
+	str = "abcdbcd";
+	status = first_char_m_times_occurred(str, 2, &output, &index);
+	printf("(1,%d) (b,%c) (1,%d)\n", status, output, index);
+
+	str = "aabbccc";
+	status = first_char_m_times_occurred(str, 3, &output, &index);
+	printf("(1,%d) (c,%c) (4,%d)\n", status, output, index);
+
+	str = "";
+	status = first_char_m_times_occurred(str, 2, &output, &index);
+	printf("(0,%d) (b,%c) (1,%d)\n", status, output, index);
+
+	str = NULL;
+	status = first_char_m_times_occurred(str, 2, &output, &index);
+	printf("(0,%d) (b,%c) (1,%d)\n", status, output, index);
 
 	return 0;
 }
