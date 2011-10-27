@@ -84,9 +84,24 @@ struct sl_list_node *find_middle (struct sl_list_node *head)
 	return snd;
 }
 
+int reverse_sl_list (struct sl_list_node **head)
+{
+	if (*head == NULL)
+		return 0;
 
-
-
-
+	struct sl_list_node *it = *head;
+	struct sl_list_node *prev = NULL;
+	while (it) {
+		struct sl_list_node *tmp = it->next;
+		it->next = prev;
+		prev = it;
+		if (!tmp) {
+			*head = it;
+		}
+		it = tmp;
+	} 
+	
+	return 1;
+}
 
 
