@@ -62,3 +62,25 @@ void print_dl_list(struct dl_list_node *head)
 	}
 	printf("\n");
 }
+
+int reverse_dl_list (struct dl_list_node **head)
+{
+	if (*head == NULL)
+		return 0;
+
+	struct dl_list_node *it = *head;
+	while (it) {
+		if (it->next == NULL)
+			*head = it;
+
+		struct dl_list_node *tmp = it->next;
+		it->next = it->prev;
+		it->prev = tmp;
+		
+		it = it->prev;
+	}
+
+	return 1;
+}
+
+
