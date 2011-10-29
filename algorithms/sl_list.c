@@ -104,4 +104,35 @@ int reverse_sl_list (struct sl_list_node **head)
 	return 1;
 }
 
+int copy_sl_list (struct sl_list_node **head, struct sl_list_node **copy)
+{
+	if (!(*head))
+		return 0;
+	if (*copy)
+		return 0;
+
+	*copy = create_sl_list_node((*head)->data, (*head)->data_size);
+	if(!(*copy))
+		return 0;
+	
+	struct sl_list_node *tmp = *head;
+	struct sl_list_node *cp = *copy;
+
+	tmp = tmp->next;	
+	while (tmp) {
+		cp->next = create_sl_list_node(tmp->data, tmp->data_size);
+		if (!cp->next) {
+			destroy_sl_list(copy, free);
+			return 0;
+		}
+		cp = cp->next;
+		tmp = tmp->next;
+	}
+
+	return 1;
+}
+
+
+
+
 
