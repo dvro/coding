@@ -23,7 +23,7 @@ int remove_chars (char *str, char *chars);
 //TODO
 int match_re(char *str, char *re);
 //TODO
-int dtw (char *str1, char *str2);
+int string_distance (char *str1, char *str2);
 
 #endif
 

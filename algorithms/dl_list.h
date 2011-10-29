@@ -18,9 +18,9 @@ int reverse_dl_list (struct dl_list_node **head);
 //TODO
 int copy_dl_list (struct dl_list_node **head, struct dl_list_node **copy);
 //TODO
-int add_node (struct dl_list_node **head, void *data, size_t data_size);
+int add_dl_list_node (struct dl_list_node **head, void *data, size_t data_size);
 //TODO
-int rem_node (struct dl_list_node **head, void *data, int *compare(void *, void *));
+int rem_dl_list_node (struct dl_list_node **head, void *data, int *compare(void *, void *));
 
 #endif
 

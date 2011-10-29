@@ -196,6 +196,14 @@ int main (void)
 	printf("'%s'\n", str);
 	free(str);
 
+	char *str1 = "casa";
+	char *str2 = "casa";
+	printf("dist(%s,%s)= %d == 0\n", str1, str2, string_distance(str1,str2));
+
+	str1 = "kitten";
+	str2 = "sitting";
+	printf("dist(%s,%s)= %d == 3\n", str1, str2, string_distance(str1,str2));
+
 	return 0;
 }
 

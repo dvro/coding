@@ -317,4 +317,40 @@ int remove_chars (char *str, char *chars)
 	return 1;
 }
 
+int string_distance (char *str1, char *str2)
+{
+	int len1 = strlen(str1);
+	int len2 = strlen(str2);
+
+	int matrix[len1][len2];
+
+	int i, j;
+
+	for (i = 0; i < len1; i++)
+		matrix[i][0] = i;
+	
+	for (i = 0; i < len2; i++)
+		matrix[0][i] = i;
+
+
+	for (i = 1; i < len1; i++) {
+		for (j = 1; j < len2; j++) {
+			if (str1[i] == str2[j]) {
+				matrix[i][j] = matrix[i-1][j-1];
+			} else {
+				int cost = matrix[i-1][j-1];
+
+				if (cost > matrix[i-1][j])
+					cost = matrix[i-1][j];
+				if (cost > matrix[i][j-1])
+					cost = matrix[i][j-1];
+
+				matrix[i][j] = cost + 1;
+			}
+		}
+	}
+
+	return matrix[len1 - 1][len2 - 1];
+}
+
 
