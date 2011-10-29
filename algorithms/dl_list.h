@@ -15,6 +15,12 @@ void destroy_dl_list (struct dl_list_node **head, void *free_data(void *));
 void print_dl_list (struct dl_list_node *head);
 
 int reverse_dl_list (struct dl_list_node **head);
+//TODO
+int copy_dl_list (struct dl_list_node **head, struct dl_list_node **copy);
+//TODO
+int add_node (struct dl_list_node **head, void *data, size_t data_size);
+//TODO
+int rem_node (struct dl_list_node **head, void *data, int *compare(void *, void *));
 
 #endif
 
