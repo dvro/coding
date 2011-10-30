@@ -565,6 +565,98 @@ START_TEST (test_remove_quotes_only_quotes)
 }
 END_TEST
 
+START_TEST (test_remove_substring_many_times)
+{
+	char *str = strdup("a1a2a3a4a5a6a7a8a9a");
+	char *exp = "123456789";
+	int status = remove_substring(str, "a");
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, exp) == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_substring_regular_case)
+{
+	char *str = strdup("i used to rule the world");
+	char *exp = "i  to rule the world";
+	int status = remove_substring(str, "a");
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, exp) == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_substring_no_occurrence)
+{
+	char *str = strdup("hello hello");
+	char *exp = "hello hello";
+	int status = remove_substring(str, "a");
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, exp) == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_substring_init)
+{
+	char *str = strdup("oi fulano");
+	char *exp = " fulano";
+	int status = remove_substring(str, "oi");
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, exp) == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_substring_end)
+{
+	char *str = strdup("oi fulano");
+	char *exp = "oi ";
+	int status = remove_substring(str, "fulano");
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, exp) == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_substring_null_string)
+{
+	char *str = NULL;
+	int status = remove_substring(str, "fulano");
+	fail_unless(status == 0);
+}
+END_TEST
+
+START_TEST (test_remove_substring_empty_string)
+{
+	char *str = strdup("");
+	int status = remove_substring(str, "a");
+	fail_unless(status == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_substring_null_substring)
+{
+	char *str = strdup("casa");
+	char *sub = NULL;
+	int status = remove_substring(str, sub);
+	fail_unless(status == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_substring_empty_substring)
+{
+	char *str = strdup("casa");
+	int status = remove_substring(str, "");
+	fail_unless(status == 0);
+	free(str);
+}
+END_TEST
+
+
 Suite *get_suite(void)
 {
 	Suite *s = suite_create("string utils suite");
@@ -629,6 +721,8 @@ Suite *get_suite(void)
 	tcase_add_test(tc_remove_quotes, test_remove_quotes_one_char);
 	tcase_add_test(tc_remove_quotes, test_remove_quotes_only_quotes);
 	suite_add_tcase(s, tc_remove_quotes);
+
+
 	
 	return s;
 }
