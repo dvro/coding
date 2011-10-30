@@ -57,6 +57,42 @@ START_TEST (test_str_to_int_invalid_string)
 }
 END_TEST
 
+START_TEST (test_int_to_str)
+{
+	int value = 123;
+	char *expected = "123";
+	char *actual = calloc(10, sizeof(char));
+	int status = int_to_str(value, &actual);
+	fail_unless(status == 1, "status = %d", status);
+	fail_unless(strcmp(actual, expected) == 0, "%s != %s", actual, expected);
+	free(actual);
+}
+END_TEST
+
+START_TEST (test_int_to_str_negative_value)
+{
+	int value = -123;
+	char *expected = "-123";
+	char *actual = calloc(10, sizeof(char));
+	int status = int_to_str(value, &actual);
+	fail_unless(status == 1, "status = %d", status);
+	fail_unless(strcmp(actual, expected) == 0, "%s != %s", actual, expected);
+	free(actual);
+}
+END_TEST
+
+START_TEST (test_int_to_str_zero_value)
+{
+	int value = 0;
+	char *expected = "0";
+	char *actual = calloc(10, sizeof(char));
+	int status = int_to_str(value, &actual);
+	fail_unless(status == 1, "status = %d", status);
+	fail_unless(strcmp(actual, expected) == 0, "%s != %s", actual, expected);
+	free(actual);
+}
+END_TEST
+
 Suite *get_suite(void)
 {
 	Suite *s = suite_create("string utils suite");
@@ -70,6 +106,11 @@ Suite *get_suite(void)
 	tcase_add_test(tc_str_to_int, test_str_to_int_invalid_string);
 	suite_add_tcase(s, tc_str_to_int);
 	
+	TCase *tc_int_to_str = tcase_create("tcase_int_to_str");
+	tcase_add_test(tc_int_to_str, test_int_to_str);
+	tcase_add_test(tc_int_to_str, test_int_to_str_negative_value);
+	tcase_add_test(tc_int_to_str, test_int_to_str_zero_value);
+	suite_add_tcase(s, tc_int_to_str);
 	
 	return s;
 }
@@ -85,5 +126,4 @@ int main(void)
 	srunner_free(sr);
 	return (number_failed == 0) ? 0 : 1;
 }
-
 
