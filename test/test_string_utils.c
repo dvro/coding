@@ -154,6 +154,83 @@ START_TEST (test_reverse_words_lots_of_spaces)
 }
 END_TEST
 
+START_TEST(test_large_block_empty_string)
+{
+	int index = -1;
+	int status = large_block("", &index);
+	fail_unless(status == 0);
+	fail_unless(index == -1);
+}
+END_TEST
+
+START_TEST(test_large_block_null_string)
+{
+	int index = -1;
+	char *tmp = NULL;
+	int status = large_block(tmp, &index);
+	fail_unless(status == 0);
+	fail_unless(index == -1);
+}
+END_TEST
+
+START_TEST(test_large_block_non_block)
+{
+	int index = -1;
+	char *tmp = "abcd";
+	int status = large_block(tmp, &index);
+	fail_unless(status == 1);
+	fail_unless(index == 0);
+}
+END_TEST
+
+START_TEST(test_large_block_init)
+{
+	int index = -1;
+	char *tmp = "aaabbcc";
+	int status = large_block(tmp, &index);
+	fail_unless(status == 1);
+	fail_unless(index == 0);
+}
+END_TEST
+
+START_TEST(test_large_block_middle)
+{
+	int index = -1;
+	char *tmp = "aabbbcc";
+	int status = large_block(tmp, &index);
+	fail_unless(status == 1);
+	fail_unless(index == 2);
+}
+END_TEST
+
+START_TEST(test_large_block_end)
+{
+	int index = -1;
+	char *tmp = "aabbccc";
+	int status = large_block(tmp, &index);
+	fail_unless(status == 1);
+	fail_unless(index == 4);
+}
+END_TEST
+
+START_TEST(test_large_block_concept)
+{
+	int index = -1;
+	int status = large_block("abababababcccabababababa", &index);
+	fail_unless(status == 1);
+	fail_unless(index == 10);
+}
+END_TEST
+
+START_TEST(test_large_block_one_char)
+{
+	int index = -1;
+	int status = large_block("a", &index);
+	fail_unless(status == 1);
+	fail_unless(index == 0);
+}
+END_TEST
+
 Suite *get_suite(void)
 {
 	Suite *s = suite_create("string utils suite");
@@ -181,6 +258,17 @@ Suite *get_suite(void)
 	tcase_add_test(tc_reverse_words, test_reverse_words_empty_string);
 	tcase_add_test(tc_reverse_words, test_reverse_words_lots_of_spaces);
 	suite_add_tcase(s, tc_reverse_words);
+
+	TCase *tc_large_block = tcase_create("tcase_large_block");
+	tcase_add_test(tc_large_block, test_large_block_empty_string);
+	tcase_add_test(tc_large_block, test_large_block_null_string);
+	tcase_add_test(tc_large_block, test_large_block_non_block);
+	tcase_add_test(tc_large_block, test_large_block_init);
+	tcase_add_test(tc_large_block, test_large_block_middle);
+	tcase_add_test(tc_large_block, test_large_block_end);
+	tcase_add_test(tc_large_block, test_large_block_concept);
+	tcase_add_test(tc_large_block, test_large_block_one_char);
+	suite_add_tcase(s, tc_large_block);
 	
 	return s;
 }
