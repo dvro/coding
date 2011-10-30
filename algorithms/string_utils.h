@@ -22,7 +22,7 @@ int remove_substring (char *str, char *substring);
 int remove_chars (char *str, char *chars);
 //TODO
 int match_re(char *str, char *re);
-//TODO
+
 int string_distance (char *str_a, char *str_b);
 
 #endif
