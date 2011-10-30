@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "string_utils.h"
+#include <string_utils.h>
 
 int str_to_int (char *str, int *value)
 {

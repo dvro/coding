@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "sl_list.h"
-#include "stack.h"
+#include <sl_list.h>
+#include <stack.h>
 
 struct stack *create_stack ()
 {

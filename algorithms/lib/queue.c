@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "dl_list.h"
-#include "queue.h"
+#include <dl_list.h>
+#include <queue.h>
 
 struct queue *create_queue()
 {
