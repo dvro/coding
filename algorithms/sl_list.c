@@ -36,7 +36,7 @@ void destroy_sl_list (struct sl_list_node **head, void *free_data(void *))
 	while(it != NULL) {
 		tmp = it;
 		it = it->next;
-		if (free_data == NULL)
+		if (free_data != NULL)
 			free_data(tmp->data);
 		else
 			free(tmp->data);
@@ -122,7 +122,7 @@ int copy_sl_list (struct sl_list_node **head, struct sl_list_node **copy)
 	while (tmp) {
 		cp->next = create_sl_list_node(tmp->data, tmp->data_size);
 		if (!cp->next) {
-			destroy_sl_list(copy, free);
+			destroy_sl_list(copy, NULL);
 			return 0;
 		}
 		cp = cp->next;
