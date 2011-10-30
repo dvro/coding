@@ -580,7 +580,7 @@ START_TEST (test_remove_substring_regular_case)
 {
 	char *str = strdup("i used to rule the world");
 	char *exp = "i  to rule the world";
-	int status = remove_substring(str, "a");
+	int status = remove_substring(str, "used");
 	fail_unless(status == 1);
 	fail_unless(strcmp(str, exp) == 0);
 	free(str);
@@ -592,7 +592,7 @@ START_TEST (test_remove_substring_no_occurrence)
 	char *str = strdup("hello hello");
 	char *exp = "hello hello";
 	int status = remove_substring(str, "a");
-	fail_unless(status == 1);
+	fail_unless(status == 0);
 	fail_unless(strcmp(str, exp) == 0);
 	free(str);
 }
@@ -722,7 +722,17 @@ Suite *get_suite(void)
 	tcase_add_test(tc_remove_quotes, test_remove_quotes_only_quotes);
 	suite_add_tcase(s, tc_remove_quotes);
 
-
+	TCase *tc_remove_substring = tcase_create("tcase_remove_substring");
+	tcase_add_test(tc_remove_substring, test_remove_substring_many_times);
+	tcase_add_test(tc_remove_substring, test_remove_substring_empty_substring);
+	tcase_add_test(tc_remove_substring, test_remove_substring_null_substring);
+	tcase_add_test(tc_remove_substring, test_remove_substring_empty_string);
+	tcase_add_test(tc_remove_substring, test_remove_substring_null_string);
+	tcase_add_test(tc_remove_substring, test_remove_substring_end);
+	tcase_add_test(tc_remove_substring, test_remove_substring_init);
+	tcase_add_test(tc_remove_substring, test_remove_substring_no_occurrence);
+	tcase_add_test(tc_remove_substring, test_remove_substring_regular_case);
+	suite_add_tcase(s, tc_remove_substring);
 	
 	return s;
 }
