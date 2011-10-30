@@ -231,6 +231,112 @@ START_TEST(test_large_block_one_char)
 }
 END_TEST
 
+START_TEST(test_char_most_repeated)
+{
+	char output = '\0';
+	int index = -1;
+	int count = -1;
+	char *str = "ababababaccccccababababab";
+	int status = char_most_repeated(str, &output, &index, &count);
+
+	fail_unless(status == 1);
+	fail_unless(output == 'a');
+	fail_unless(index == 0);
+	fail_unless(count == 10);
+}
+END_TEST
+
+START_TEST(test_char_most_repeated_end)
+{
+	char output = '\0';
+	int index = -1;
+	int count = -1;
+	char *str = "ccbaaa";
+	int status = char_most_repeated(str, &output, &index, &count);
+
+	fail_unless(status == 1);
+	fail_unless(output == 'a');
+	fail_unless(index == 3);
+	fail_unless(count == 3);
+}
+END_TEST
+
+START_TEST(test_char_most_repeated_middle)
+{
+	char output = '\0';
+	int index = -1;
+	int count = -1;
+	char *str = "ccbbbaa";
+	int status = char_most_repeated(str, &output, &index, &count);
+
+	fail_unless(status == 1);
+	fail_unless(output == 'b');
+	fail_unless(index == 2);
+	fail_unless(count == 3);
+}
+END_TEST
+
+START_TEST(test_char_most_repeated_init)
+{
+	char output = '\0';
+	int index = -1;
+	int count = -1;
+	char *str = "abcbcbcadadadadadadadada";
+	int status = char_most_repeated(str, &output, &index, &count);
+
+	fail_unless(status == 1);
+	fail_unless(output == 'a');
+	fail_unless(index == 0);
+	fail_unless(count == 10);
+}
+END_TEST
+
+START_TEST(test_char_most_repeated_empty_string)
+{
+	char output = '\0';
+	int index = -1;
+	int count = -1;
+	char *str = "";
+	int status = char_most_repeated(str, &output, &index, &count);
+
+	fail_unless(status == 0);
+	fail_unless(output == '\0');
+	fail_unless(index == -1);
+	fail_unless(count == -1);
+}
+END_TEST
+
+START_TEST(test_char_most_repeated_null_string)
+{
+	char output = '\0';
+	int index = -1;
+	int count = -1;
+	char *str = NULL;
+	int status = char_most_repeated(str, &output, &index, &count);
+
+	fail_unless(status == 0);
+	fail_unless(output == '\0');
+	fail_unless(index == -1);
+	fail_unless(count == -1);
+}
+END_TEST
+
+START_TEST(test_char_most_repeated_one_char)
+{
+	char output = '\0';
+	int index = -1;
+	int count = -1;
+	char *str = "a";
+	int status = char_most_repeated(str, &output, &index, &count);
+
+	fail_unless(status == 1);
+	fail_unless(output == 'a');
+	fail_unless(index == 0);
+	fail_unless(count == 1);
+}
+END_TEST
+
+
 Suite *get_suite(void)
 {
 	Suite *s = suite_create("string utils suite");
@@ -269,6 +375,17 @@ Suite *get_suite(void)
 	tcase_add_test(tc_large_block, test_large_block_concept);
 	tcase_add_test(tc_large_block, test_large_block_one_char);
 	suite_add_tcase(s, tc_large_block);
+
+	TCase *tc_char_most_repeated = tcase_create("tcase_char_most_repeated");
+	tcase_add_test(tc_char_most_repeated, test_char_most_repeated);
+	tcase_add_test(tc_char_most_repeated, test_char_most_repeated_end);
+	tcase_add_test(tc_char_most_repeated, test_char_most_repeated_middle);
+	tcase_add_test(tc_char_most_repeated, test_char_most_repeated_init);
+	tcase_add_test(tc_char_most_repeated, test_char_most_repeated_empty_string);
+	tcase_add_test(tc_char_most_repeated, test_char_most_repeated_null_string);
+	tcase_add_test(tc_char_most_repeated, test_char_most_repeated_one_char);
+	suite_add_tcase(s, tc_char_most_repeated);
+	
 	
 	return s;
 }
