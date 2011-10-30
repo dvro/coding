@@ -195,6 +195,11 @@ int main (void)
 	status = remove_chars(str, "aeiou");
 	printf("'%s'\n", str);
 	free(str);
+	
+	str = strdup("aeiou");
+	status = remove_chars(str, "aeiou");
+	printf("'%s'\n", str);
+	free(str);
 
 	char *str1 = "casa";
 	char *str2 = "casa";

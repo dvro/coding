@@ -309,8 +309,9 @@ int remove_chars (char *str, char *chars)
 	while (i < len) {
 		if (hashtable[str[i]] == 1) {
 			move(str, i, i+1);
+		} else {
+			i++;
 		}
-		i++;
 	}
 
 	free(hashtable);
