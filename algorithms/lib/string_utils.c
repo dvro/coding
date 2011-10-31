@@ -295,6 +295,8 @@ int remove_chars (char *str, char *chars)
 	if (!chars)
 		return 0;
 
+	int flag = 0;
+
 	int *hashtable = calloc(256, sizeof(int));
 	if (!hashtable)
 		return 0;
@@ -309,13 +311,15 @@ int remove_chars (char *str, char *chars)
 	while (i < len) {
 		if (hashtable[str[i]] == 1) {
 			move(str, i, i+1);
+			if (flag == 0)
+				flag = 1;
 		} else {
 			i++;
 		}
 	}
 
 	free(hashtable);
-	return 1;
+	return flag;
 }
 
 int string_distance (char *str_a, char *str_b)

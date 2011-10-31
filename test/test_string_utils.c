@@ -656,6 +656,76 @@ START_TEST (test_remove_substring_empty_substring)
 }
 END_TEST
 
+START_TEST (test_remove_chars)
+{
+	char *str = strdup("eu sou dayvid");
+	char *exp = " s dyvd";
+	int status = remove_chars(str, "aeiou");
+	fail_unless (status == 1);
+	fail_unless (strcmp(str,exp) == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_chars_all_chars)
+{
+	char *str = strdup("aaaeeeiiiooouuuaeiou");
+	char *exp = "";
+	int status = remove_chars(str, "aeiou");
+	fail_unless (status == 1);
+	fail_unless (strcmp(str,exp) == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_chars_no_occurrence)
+{
+	char *str = strdup("Jesus blood never failed me yet");
+	char *exp = "Jesus blood never failed me yet";
+	int status = remove_chars(str, "xzk");
+	fail_unless (status == 0);
+	fail_unless (strcmp(str,exp) == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_chars_null_string)
+{
+	char *str = NULL;
+	int status = remove_chars(str, "xzk");
+	fail_unless (status == 0);
+}
+END_TEST
+
+START_TEST (test_remove_chars_empty_string)
+{
+	char *str = strdup("");
+	int status = remove_chars(str, "xzk");
+	fail_unless (status == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_chars_null_chars)
+{
+	char *str = strdup("abcd");
+	char *chars = NULL;
+	int status = remove_chars(str, chars);
+	fail_unless (status == 0);
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_chars_empty_chars)
+{
+	char *str = strdup("abcd");
+	char *chars = "";
+	int status = remove_chars(str, chars);
+	fail_unless (status == 0);
+	fail_unless (strcmp(str, "abcd") == 0);
+	free(str);
+}
+END_TEST
 
 Suite *get_suite(void)
 {
@@ -733,10 +803,19 @@ Suite *get_suite(void)
 	tcase_add_test(tc_remove_substring, test_remove_substring_no_occurrence);
 	tcase_add_test(tc_remove_substring, test_remove_substring_regular_case);
 	suite_add_tcase(s, tc_remove_substring);
+
+	TCase *tc_remove_chars = tcase_create("tc_remove_chars");
+	tcase_add_test(tc_remove_chars, test_remove_chars);
+	tcase_add_test(tc_remove_chars, test_remove_chars_all_chars);
+	tcase_add_test(tc_remove_chars, test_remove_chars_no_occurrence);
+	tcase_add_test(tc_remove_chars, test_remove_chars_null_string);
+	tcase_add_test(tc_remove_chars, test_remove_chars_empty_string);
+	tcase_add_test(tc_remove_chars, test_remove_chars_null_chars);
+	tcase_add_test(tc_remove_chars, test_remove_chars_empty_chars);
+	suite_add_tcase(s, tc_remove_chars);
 	
 	return s;
 }
-
 
 int main(void)
 {

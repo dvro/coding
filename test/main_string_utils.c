@@ -181,7 +181,6 @@ int main (void)
 	printf("'%s'\n", str);
 	free(str);
 	
-	str = strdup("i used to rule the world");
 	status = remove_substring(str, "used");
 	printf("'%s'\n", str);
 	free(str);
