@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "algorithms/string_utils.h"
+#include <string_utils.h>
 
 int main (void)
 {
@@ -181,6 +181,7 @@ int main (void)
 	printf("'%s'\n", str);
 	free(str);
 	
+	str = strdup("I used to rule the world");
 	status = remove_substring(str, "used");
 	printf("'%s'\n", str);
 	free(str);
@@ -207,6 +208,10 @@ int main (void)
 	str1 = "kitten";
 	str2 = "sitting";
 	printf("dist(%s,%s)= %d == 3\n", str1, str2, string_distance(str1,str2));
+	char *str_a = "kitten";
+	char *str_b = "sitting";
+	int distance = string_distance(str_a, str_b);
+	printf("distance == %d", distance);
 
 	return 0;
 }

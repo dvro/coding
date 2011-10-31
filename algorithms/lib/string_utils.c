@@ -324,17 +324,26 @@ int remove_chars (char *str, char *chars)
 
 int string_distance (char *str_a, char *str_b)
 {
+	if (!str_a || !str_b)
+		return -1;
+
 	int len_a = strlen(str_a);
 	int len_b = strlen(str_b);
+
+	if (len_a == 0)
+		return len_b;
+
+	if (len_b == 0)
+		return len_a;
 
 	int matrix[len_a + 1][len_b + 1];
 
 	int i, j;
 
-	for (i = 0; i < len_a; i++)
+	for (i = 0; i <= len_a; i++)
 		matrix[i][0] = i;
 	
-	for (i = 0; i < len_b; i++)
+	for (i = 0; i <= len_b; i++)
 		matrix[0][i] = i;
 
 

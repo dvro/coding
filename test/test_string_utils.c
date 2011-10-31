@@ -727,6 +727,44 @@ START_TEST (test_remove_chars_empty_chars)
 }
 END_TEST
 
+START_TEST (test_string_distance)
+{
+	char *str_a = "kitten";
+	char *str_b = "sitting";
+	int distance = string_distance(str_a, str_b);
+	fail_unless(distance == 3, "distance == %d", distance);
+}
+END_TEST
+
+START_TEST (test_string_distance_same_strings)
+{
+	char *str1 = "sitting";
+	char *str2 = "sitting";
+	int distance = string_distance(str1, str2);
+	fail_unless(distance == 0);
+}
+END_TEST
+
+START_TEST (test_string_distance_empty_string)
+{
+	char *str1 = "";
+	char *str2 = "sitting";
+	int distance = string_distance(str1, str2);
+	fail_unless(distance == 7);
+}
+END_TEST
+
+START_TEST (test_string_distance_null_string)
+{
+	char *str1 = NULL;
+	char *str2 = "sitting";
+	int distance = string_distance(str1, str2);
+	fail_unless(distance == -1);
+	distance = string_distance(str2, str1);
+	fail_unless(distance == -1);
+}
+END_TEST
+
 Suite *get_suite(void)
 {
 	Suite *s = suite_create("string utils suite");
@@ -814,6 +852,13 @@ Suite *get_suite(void)
 	tcase_add_test(tc_remove_chars, test_remove_chars_empty_chars);
 	suite_add_tcase(s, tc_remove_chars);
 	
+	TCase *tc_string_distance = tcase_create("tc_string_distance");
+	tcase_add_test(tc_string_distance, test_string_distance);
+	//tcase_add_test(tc_string_distance, test_string_distance_same_strings);
+	//tcase_add_test(tc_string_distance, test_string_distance_empty_string);
+	//tcase_add_test(tc_string_distance, test_string_distance_null_string);
+	suite_add_tcase(s, tc_string_distance);
+
 	return s;
 }
 
