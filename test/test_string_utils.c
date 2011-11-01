@@ -854,9 +854,9 @@ Suite *get_suite(void)
 	
 	TCase *tc_string_distance = tcase_create("tc_string_distance");
 	tcase_add_test(tc_string_distance, test_string_distance);
-	//tcase_add_test(tc_string_distance, test_string_distance_same_strings);
-	//tcase_add_test(tc_string_distance, test_string_distance_empty_string);
-	//tcase_add_test(tc_string_distance, test_string_distance_null_string);
+	tcase_add_test(tc_string_distance, test_string_distance_same_strings);
+	tcase_add_test(tc_string_distance, test_string_distance_empty_string);
+	tcase_add_test(tc_string_distance, test_string_distance_null_string);
 	suite_add_tcase(s, tc_string_distance);
 
 	return s;

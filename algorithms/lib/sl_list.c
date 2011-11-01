@@ -84,6 +84,47 @@ struct sl_list_node *find_middle (struct sl_list_node *head)
 	return snd;
 }
 
+int has_cicle (struct sl_list_node *head)
+{
+	if (!head)
+		return 0;
+
+	struct sl_list_node *slow = head;
+	struct sl_list_node *fast = head->next;
+
+	while (fast && fast->next) {
+		fast = fast->next->next;
+		slow = slow->next;
+
+		if (fast == slow || fast->next == slow) {
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
+struct sl_list_node *find_cicle (struct sl_list_node *head)
+{
+	if (!head)
+		return NULL;
+
+	struct sl_list_node *tmp = head;
+
+	while (tmp) {
+		struct sl_list_node *previous = head;
+		while (previous != tmp) {
+			if (tmp->next == previous) {
+				return previous;
+			}
+			previous = previous->next;
+		}
+		tmp = tmp->next;
+	}
+
+	return NULL;
+}
+
 int reverse_sl_list (struct sl_list_node **head)
 {
 	if (*head == NULL)
