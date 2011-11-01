@@ -1,0 +1,23 @@
+	
+binary_tree:
+	is a search tree?
+	add_tree_node
+	rem_tree_node
+
+string:
+	identify if a string str matchs a given regular expression;
+
+sort:
+	sort a sl_list (mergesort quick_sort)
+	sort a dl_list
+
+array:
+	quick_sort
+	merge_sort
+	insersion_sort
+	bubble_sort
+
+	binary_search
+	
+
+
