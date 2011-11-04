@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <check.h>
-#include <string_utils.h>
+#include <array_utils.h>
 
 START_TEST (test_binary_search_even)
 {
 	int value = 5;
 	int array[10] = {0,1,2,3,4,5,6,7,8,9};
 	int index = -1;
-	int status = binary_search(array, 0, 10, value, &index);
-	fail_unless(status == 1);
+	int status = binary_search(array, 10, value, &index);
+	fail_unless(status == 1, "status = %d", status);
 	fail_unless(index == 5);
 }
 END_TEST
@@ -19,8 +19,8 @@ START_TEST (test_binary_search_odd_size)
 	int value = 4;
 	int array[11] = {0,1,2,3,4,5,6,7,8,9,10};
 	int index = -1;
-	int status = binary_search(array, 0, 11, value, &index);
-	fail_unless(status == 1);
+	int status = binary_search(array, 11, value, &index);
+	fail_unless(status == 1, "status = %d", status);
 	fail_unless(index == 4);
 }
 END_TEST
@@ -30,8 +30,8 @@ START_TEST (test_binary_search_left)
 	int value = 0;
 	int array[11] = {0,1,2,3,4,5,6,7,8,9,10};
 	int index = -1;
-	int status = binary_search(array, 0, 11, value, &index);
-	fail_unless(status == 1);
+	int status = binary_search(array, 11, value, &index);
+	fail_unless(status == 1, "status = %d", status);
 	fail_unless(index == 0);
 }
 END_TEST
@@ -41,7 +41,7 @@ START_TEST (test_binary_search_left_2)
 	int value = 1;
 	int array[11] = {0,1,2,3,4,5,6,7,8,9,10};
 	int index = -1;
-	int status = binary_search(array, 0, 11, value, &index);
+	int status = binary_search(array, 11, value, &index);
 	fail_unless(status == 1);
 	fail_unless(index == 1);
 }
@@ -53,7 +53,7 @@ START_TEST (test_binary_search_right)
 	int value = 10;
 	int array[11] = {0,1,2,3,4,5,6,7,8,9,10};
 	int index = -1;
-	int status = binary_search(array, 0, 11, value, &index);
+	int status = binary_search(array, 11, value, &index);
 	fail_unless(status == 1);
 	fail_unless(index == 10);
 }
@@ -64,7 +64,7 @@ START_TEST (test_binary_search_right_2)
 	int value = 9;
 	int array[11] = {0,1,2,3,4,5,6,7,8,9,10};
 	int index = -1;
-	int status = binary_search(array, 0, 11, value, &index);
+	int status = binary_search(array, 11, value, &index);
 	fail_unless(status == 1);
 	fail_unless(index == 9);
 }
@@ -73,9 +73,9 @@ END_TEST
 START_TEST (test_binary_search_value_not_found)
 {
 	int value = 5;
-	int array[5] = {0,2,4,6,8,10};
+	int array[5] = {0,2,4,6,8};
 	int index = -1;
-	int status = binary_search(array, 0, 5, value, &index);
+	int status = binary_search(array, 5, value, &index);
 	fail_unless(status == 0);
 	fail_unless(index == -1);
 }
@@ -84,9 +84,9 @@ END_TEST
 START_TEST (test_binary_search_value_not_found_left)
 {
 	int value = -1;
-	int array[5] = {0,2,4,6,8,10};
+	int array[5] = {0,2,4,6,8};
 	int index = -1;
-	int status = binary_search(array, 0, 5, value, &index);
+	int status = binary_search(array, 5, value, &index);
 	fail_unless(status == 0);
 	fail_unless(index == -1);
 }
@@ -95,9 +95,9 @@ END_TEST
 START_TEST (test_binary_search_value_not_found_left_2)
 {
 	int value = 1;
-	int array[5] = {0,2,4,6,8,10};
+	int array[5] = {0,2,4,6,8};
 	int index = -1;
-	int status = binary_search(array, 0, 5, value, &index);
+	int status = binary_search(array, 5, value, &index);
 	fail_unless(status == 0);
 	fail_unless(index == -1);
 }
@@ -106,9 +106,9 @@ END_TEST
 START_TEST (test_binary_search_value_not_found_right)
 {
 	int value = 11;
-	int array[5] = {0,2,4,6,8,10};
+	int array[5] = {0,2,4,6,8};
 	int index = -1;
-	int status = binary_search(array, 0, 5, value, &index);
+	int status = binary_search(array, 5, value, &index);
 	fail_unless(status == 0);
 	fail_unless(index == -1);
 }
@@ -117,9 +117,9 @@ END_TEST
 START_TEST (test_binary_search_value_not_found_right_2)
 {
 	int value = 9;
-	int array[5] = {0,2,4,6,8,10};
+	int array[5] = {0,2,4,6,8};
 	int index = -1;
-	int status = binary_search(array, 0, 5, value, &index);
+	int status = binary_search(array, 5, value, &index);
 	fail_unless(status == 0);
 	fail_unless(index == -1);
 }
@@ -130,7 +130,7 @@ START_TEST (test_binary_search_array_unordened)
 	int value = 6;
 	int array[5] = {0,10,2,8,6};
 	int index = -1;
-	int status = binary_search(array, 0, 5, value, &index);
+	int status = binary_search(array, 5, value, &index);
 	fail_unless(status == -1);
 	fail_unless(index == -1);
 }

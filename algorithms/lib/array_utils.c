@@ -35,13 +35,16 @@ int max_subarray_sum (int array[], int len, int *ini, int *end)
 	return 1;
 }
 
-int binary_search (int array[], int i, int j, int value, int *index)
+int binary_search (int array[], int len, int value, int *index)
 {
-	if (j > i)
+	int i = 0;
+	int j = len - 1;
+
+	if (j < i)
 		return 0;
 
 
-	while (i < j) {
+	while (i <= j) {
 		if (array[i] > array[j])
 			return -1;	//ARRAY_NOT_ORDENED
 
@@ -52,9 +55,9 @@ int binary_search (int array[], int i, int j, int value, int *index)
 		}
 	
 		if (array[m] < value) {
-			i = m;
+			i = m + 1;
 		} else {
-			j = m;
+			j = m - 1;
 		}
 	}
 

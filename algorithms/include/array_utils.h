@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 int max_subarray_sum (int array[], int len, int *ini, int *end);
-int binary_search (int array[], int i, int j, int value, int *index);
+int binary_search (int array[], int len, int value, int *index);
 int quick_sort (int *array, int len);
 int merge_sort (int *array, int len);
 
