@@ -10,11 +10,11 @@ struct tree_node {
 struct tree_node *create_tree(char *value);
 void delete_tree(struct tree_node **root);
 
-int tree_size(struct tree_node *root);
+int tree_size (struct tree_node *root);
+int tree_height (struct tree_node *root);
 int is_balanced(struct tree_node *root);
 
 void print_pre_order(struct tree_node *root);
-//TODO
 void print_levels (struct tree_node *root);
 
 int add_node (struct tree_node **root, char *data);

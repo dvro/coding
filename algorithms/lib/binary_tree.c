@@ -4,6 +4,10 @@
 #include <binary_tree.h>
 #include <queue.h>
 
+#define MAX(a,b) a>b?a:b
+#define ABS(n) n>0?(-1)*n:n
+
+
 struct tree_node *create_tree(char *value)
 {
 	if (value == NULL)
@@ -40,6 +44,28 @@ int tree_size(struct tree_node *root)
 		return 0;
 
 	return 1 + tree_size(root->left) + tree_size(root->right);
+}
+
+int tree_height (struct tree_node *root)
+{
+	if (!root)
+		return 0;
+
+	return 1 + MAX(tree_height(root->left), tree_height(root->right));
+}
+
+int is_balanced (struct tree_node *root)
+{
+	if (!root)
+		return 1; 			//let's say a null tree is balanced
+
+	int lh = tree_height(root->left);
+	int rh = tree_height(root->right);
+
+	if (ABS(lh - rh) > 1)
+		return 0;
+
+	return is_balanced(root->left) && is_balanced(root->right);
 }
 
 void print_pre_order(struct tree_node *root)
