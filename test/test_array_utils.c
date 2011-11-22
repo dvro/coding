@@ -131,10 +131,13 @@ START_TEST (test_binary_search_array_unordened)
 	int array[5] = {0,10,2,8,6};
 	int index = -1;
 	int status = binary_search(array, 5, value, &index);
-	fail_unless(status == -1);
+	fail_unless(status == -1);				//NOT_ORDENED
 	fail_unless(index == -1);
 }
 END_TEST
+
+
+
 
 
 Suite *get_array_utils_suite(void)

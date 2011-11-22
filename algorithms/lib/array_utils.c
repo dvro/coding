@@ -26,7 +26,7 @@ int max_subarray_sum (int array[], int len, int *ini, int *end)
 			int max_end = i;
 		}
 		
-		if (cur_sum < 0) {
+		if (cur_sum <= 0) {
 			cur_ini = i + 1;
 			cur_sum = 0;	
 		}
@@ -65,6 +65,11 @@ int binary_search (int array[], int len, int value, int *index)
 }
 
 int quick_sort (int *array, int len)
+{
+
+}
+
+void merge(int *array, int ia, int ja, int ib, int jb)
 {
 
 }

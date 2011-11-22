@@ -322,6 +322,12 @@ int remove_chars (char *str, char *chars)
 	return flag;
 }
 
+//TODO
+int match_re(char *str, char *re)
+{
+
+}
+
 int string_distance (char *str_a, char *str_b)
 {
 	if (!str_a || !str_b)
@@ -366,5 +372,12 @@ int string_distance (char *str_a, char *str_b)
 
 	return matrix[len_a][len_b];
 }
+
+
+
+
+
+
+
 
 
