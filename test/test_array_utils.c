@@ -136,9 +136,15 @@ START_TEST (test_binary_search_array_unordened)
 }
 END_TEST
 
-
-
-
+START_TEST (test_max_notsubsequent_subarray_sum)
+{
+	int value = -1;
+	int array[7] = {2,1,3,8,1,3,5};
+	int status = max_notsubsequent_subarray_sum(array, 7, &value);
+	fail_unless(status == 1);
+	fail_unless(value == 15, "value = %d", value);
+}
+END_TEST
 
 Suite *get_array_utils_suite(void)
 {
@@ -158,6 +164,10 @@ Suite *get_array_utils_suite(void)
 	tcase_add_test(tc_binary_search, test_binary_search_value_not_found_right_2);
 	tcase_add_test(tc_binary_search, test_binary_search_array_unordened);
 	suite_add_tcase(s, tc_binary_search);
+
+	TCase *tc_mnss = tcase_create("tc_max_NOT_ssas");
+	tcase_add_test(tc_mnss, test_max_notsubsequent_subarray_sum);
+	suite_add_tcase(s, tc_mnss);
 	
 	return s;
 }

@@ -9,8 +9,8 @@ int main(void)
 	int index = -1;
 	int status = binary_search(array, 11, value, &index);
 
-	printf("status = %d\n", status);
-	printf("index = %d\n", index);
+//	printf("status = %d\n", status);
+//	printf("index = %d\n", index);
 
 	return 0;
 }

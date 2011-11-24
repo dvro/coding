@@ -3,6 +3,7 @@
 #include <string.h>
 #include <array_utils.h>
 
+#define MAX(a,b) a>b?a:b
 
 int max_subarray_sum (int array[], int len, int *ini, int *end)
 {
@@ -35,6 +36,27 @@ int max_subarray_sum (int array[], int len, int *ini, int *end)
 	return 1;
 }
 
+int max_notsubsequent_subarray_sum(int array[], int len, int *value)
+{
+	if (len <= 0)
+		return 0;
+
+	int prev = 0;
+	int curr = 0;
+
+	int i;	
+	for (i = 0; i < len; i++) {
+		int tmp = curr;
+		curr = MAX(array[i] + prev, curr);
+		prev = tmp;
+	}
+
+	*value = curr;
+	return 1;
+}
+
+
+
 int binary_search (int array[], int len, int value, int *index)
 {
 	int i = 0;
@@ -63,20 +85,4 @@ int binary_search (int array[], int len, int value, int *index)
 
 	return 0;	
 }
-
-int quick_sort (int *array, int len)
-{
-
-}
-
-void merge(int *array, int ia, int ja, int ib, int jb)
-{
-
-}
-
-int merge_sort (int *array, int len)
-{
-
-}
-
 
