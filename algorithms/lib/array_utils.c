@@ -55,8 +55,6 @@ int max_notsubsequent_subarray_sum(int array[], int len, int *value)
 	return 1;
 }
 
-
-
 int binary_search (int array[], int len, int value, int *index)
 {
 	int i = 0;
@@ -85,4 +83,36 @@ int binary_search (int array[], int len, int value, int *index)
 
 	return 0;	
 }
+
+int find_max_and_min (int array[], int len, int *min, int *max)
+{
+	int i = 0;
+	int j = len - 1;
+	while (i < j) {
+		if (array[i] > array[j]) {
+			int tmp = array[i];
+			array[i] = array[j];
+			array[j] = tmp;
+		}
+		i++;
+		j--;
+	}
+	
+	*min = array[0];
+	for (i = 0; i <= len/2; i++) {
+		if (array[i] < *min)
+			*min = array[i];
+	}
+
+	*max = array[len/2];
+	for (i = len/2; i < len; i++) {
+		if (array[i] > *max)
+			*max = array[i];
+	}
+
+	return 1;
+}
+
+
+
 

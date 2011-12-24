@@ -146,6 +146,46 @@ START_TEST (test_max_notsubsequent_subarray_sum)
 }
 END_TEST
 
+START_TEST (test_find_min_max)
+{
+	int min = -1;
+	int max = -1;
+	int array[10] = {9,10,8,7,6,5,1,2,3,4};
+
+	int status = find_max_and_min(array, 10, &min, &max);
+	fail_unless(status == 1);
+	fail_unless(min == 1);
+	fail_unless(max == 10, "max == %d != %d (expected)", max, 10);
+}
+END_TEST
+
+START_TEST (test_find_min_max_2)
+{
+	int min = -1;
+	int max = -1;
+	int array[9] = {9,8,7,6,0,1,2,3,4};
+
+	int status = find_max_and_min(array, 9, &min, &max);
+	fail_unless(status == 1);
+	fail_unless(min == 0);
+	fail_unless(max == 9, "max == %d != %d (expected)", max, 9);
+}
+END_TEST
+
+START_TEST (test_find_min_max_3)
+{
+	int min = -1;
+	int max = -1;
+	int array[9] = {9,8,7,6,100,1,2,3,4};
+
+	int status = find_max_and_min(array, 9, &min, &max);
+	fail_unless(status == 1);
+	fail_unless(min == 1, "min == %d != %d (expected)", min, 1);
+	fail_unless(max == 100);
+}
+END_TEST
+
+
 Suite *get_array_utils_suite(void)
 {
 	Suite *s = suite_create("array utils suite");
@@ -168,6 +208,12 @@ Suite *get_array_utils_suite(void)
 	TCase *tc_mnss = tcase_create("tc_max_NOT_ssas");
 	tcase_add_test(tc_mnss, test_max_notsubsequent_subarray_sum);
 	suite_add_tcase(s, tc_mnss);
+
+	TCase *tc_find_min_max = tcase_create("tc_find_min_max");
+	tcase_add_test(tc_find_min_max, test_find_min_max);
+	tcase_add_test(tc_find_min_max, test_find_min_max_2);
+	tcase_add_test(tc_find_min_max, test_find_min_max_3);
+	suite_add_tcase(s, tc_find_min_max);
 	
 	return s;
 }
