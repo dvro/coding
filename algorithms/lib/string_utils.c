@@ -164,9 +164,9 @@ int char_most_repeated (char *str, char *output, int *index, int *count)
 	char most_repeated = '\0';
 
 	while (str[i] != '\0') {
-		hashtable[str[i]] = hashtable[str[i]] + 1;
-		if (hashtable[str[i]] > max_count) {
-			max_count = hashtable[str[i]];
+		hashtable[(int)str[i]] = hashtable[(int)str[i]] + 1;
+		if (hashtable[(int)str[i]] > max_count) {
+			max_count = hashtable[(int)str[i]];
 			most_repeated = str[i];
 		}
 		i++;
@@ -198,21 +198,24 @@ int first_char_m_times_occurred (char *str, int m, char *output, int *index)
 
 	int i = 0;
 	while (str[i] != '\0') {
-		hashtable[str[i]] = hashtable[str[i]] + 1;
+		hashtable[(int)str[i]] = hashtable[(int)str[i]] + 1;
 		i++;
 	}
 
 	i = 0;
-	while (str[i] != '\0' && hashtable[str[i]] != m)
+	while (str[i] != '\0' && hashtable[(int)str[i]] != m)
 		i++;
+
+	int status = 0;
 
 	if (str[i] != '\0') {
 		if (index != NULL)	*index = i;
 		if (output != NULL)	*output = str[i];
+		status = 1;
 	}
 
 	free(hashtable);
-	return 1;
+	return status;
 }
 
 void move (char *str, int i, int j) {
@@ -303,13 +306,13 @@ int remove_chars (char *str, char *chars)
 
 	int i;
 	for (i = 0; i < strlen(chars); i++) {
-		hashtable[chars[i]] = 1;
+		hashtable[(int)chars[i]] = 1;
 	}
 
 	i = 0;
 	int len = strlen(str);
 	while (i < len) {
-		if (hashtable[str[i]] == 1) {
+		if (hashtable[(int)str[i]] == 1) {
 			move(str, i, i+1);
 			if (flag == 0)
 				flag = 1;
@@ -334,8 +337,8 @@ int remove_repeated_chars(char *str)
 
 	char *it = str;
 	while (*it != '\0') {
-		if (table[*it] == 0) {
-			table[*it] = 1;
+		if (table[(int)*it] == 0) {
+			table[(int)*it] = 1;
 			it++;
 		} else {
 			move(it, 0, 1);
@@ -350,7 +353,7 @@ int remove_repeated_chars(char *str)
 //TODO
 int match_re(char *str, char *re)
 {
-
+	return 0;
 }
 
 int string_distance (char *str_a, char *str_b)

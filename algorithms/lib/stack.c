@@ -69,6 +69,8 @@ int pop  (struct stack *st, void **data)
 
 	*data = tmp->data;
 	free(tmp);
+
+	return 1;
 }
 
 

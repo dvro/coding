@@ -14,7 +14,6 @@ int max_subarray_sum (int array[], int len, int *ini, int *end)
 	
 	int cur_sum = 0;
 	int cur_ini = 0;
-	int cur_end = 0;
 
 	max_sum = array[0];
 
@@ -22,9 +21,9 @@ int max_subarray_sum (int array[], int len, int *ini, int *end)
 	for (i = 0; i < len; i++) {
 		cur_sum = cur_sum + array[i];
 		if (cur_sum > max_sum) {
-			int max_sum = cur_sum;
-			int max_ini = cur_ini;
-			int max_end = i;
+			max_sum = cur_sum;
+			max_ini = cur_ini;
+			max_end = i;
 		}
 		
 		if (cur_sum <= 0) {
@@ -32,6 +31,9 @@ int max_subarray_sum (int array[], int len, int *ini, int *end)
 			cur_sum = 0;	
 		}
 	}
+
+	*ini = max_ini;
+	*end = max_end;
 
 	return 1;
 }

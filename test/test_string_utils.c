@@ -787,11 +787,13 @@ END_TEST
 
 START_TEST (test_remove_repeated_chars_one_char)
 {
-	char *str = strdup("aaaaaaaaaaaaaaaaaaaa");
+	//char *str = strdup("aaaaaaaaaaaaaaaaaaaa");
+	char str[10];
+	strcpy(str,"aaaaaaaa");
 	int status = remove_repeated_chars(str);
 	fail_unless(status == 1);
 	fail_unless(strcmp(str, "a") == 0, "%s != %s", str, "a");
-	free(str);
+	//free(str);
 }
 END_TEST
 
@@ -853,6 +855,16 @@ Suite *get_suite(void)
 	tcase_add_test(tc_char_most_repeated, test_char_most_repeated_null_string);
 	tcase_add_test(tc_char_most_repeated, test_char_most_repeated_one_char);
 	suite_add_tcase(s, tc_char_most_repeated);
+
+	TCase *tc_m_times = tcase_create("tcase_m_times_occurred");
+	tcase_add_test(tc_m_times, test_first_char_m_times_ocurred_0);
+	tcase_add_test(tc_m_times, test_first_char_m_times_ocurred_1);
+	tcase_add_test(tc_m_times, test_first_char_m_times_ocurred_2_at_the_end);
+	tcase_add_test(tc_m_times, test_first_char_m_times_ocurred_non_existent);
+	tcase_add_test(tc_m_times, test_first_char_m_times_ocurred_negative_m);
+	tcase_add_test(tc_m_times, test_first_char_m_times_ocurred_empty_string);
+	tcase_add_test(tc_m_times, test_first_char_m_times_ocurred_null);
+	suite_add_tcase(s, tc_m_times);
 	
 	TCase *tc_remove_quotes = tcase_create("tcase_remove_quotes");
 	tcase_add_test(tc_remove_quotes, test_remove_quotes);
