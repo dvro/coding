@@ -22,5 +22,7 @@ int merge_sort (int *array, int len);
 int find_max_and_min (int array[], int len, int *min, int *max);
 int erase_all_x(int **array, int len, int x);
 
+int rotate_array(int **array, int len, int n);
+
 #endif
 

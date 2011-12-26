@@ -138,6 +138,32 @@ int erase_all_x(int **array, int len, int x)
 	return len - count;
 }
 
+int rotate_array(int **array, int len, int n)
+{
+	if (*array == NULL)
+		return 0;
+	if (len <= 0)
+		return 0;
+	if (n < 0)
+		return 0;
+
+	int k = n % len;
+	if (k == 0)
+		return 1;
+
+	int tmp[len];
+	
+	int i;
+	for (i = 0; i < len; i++)
+		tmp[(i+k)%len] = (*array)[i];
+
+	for (i = 0; i < len; i++)
+		(*array)[i] = tmp[i];
+
+	return 1;
+}
+
+
 
 
 
