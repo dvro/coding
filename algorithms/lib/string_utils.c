@@ -322,6 +322,31 @@ int remove_chars (char *str, char *chars)
 	return flag;
 }
 
+int remove_repeated_chars(char *str)
+{
+	if (str == NULL)
+		return -1;
+
+	char table[256];
+	int i;
+	for (i = 0; i < 256; i++)
+		table[i] = 0;
+
+	char *it = str;
+	while (*it != '\0') {
+		if (table[*it] == 0) {
+			table[*it] = 1;
+			it++;
+		} else {
+			move(it, 0, 1);
+		}
+	}
+
+	return 1;
+}
+
+
+
 //TODO
 int match_re(char *str, char *re)
 {

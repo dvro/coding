@@ -765,6 +765,46 @@ START_TEST (test_string_distance_null_string)
 }
 END_TEST
 
+START_TEST (test_remove_repeated_chars)
+{
+	char *str = strdup("aaabbbbccc");
+	int status = remove_repeated_chars(str);
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, "abc") == 0, "%s != %s", str, "abc");
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_repeated_chars_not_consecutive)
+{
+	char *str = strdup("abcabcabcabccbacbacbacba");
+	int status = remove_repeated_chars(str);
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, "abc") == 0, "%s != %s", str, "abc");
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_repeated_chars_one_char)
+{
+	char *str = strdup("aaaaaaaaaaaaaaaaaaaa");
+	int status = remove_repeated_chars(str);
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, "a") == 0, "%s != %s", str, "a");
+	free(str);
+}
+END_TEST
+
+START_TEST (test_remove_repeated_chars_empty)
+{
+	char *str = strdup("");
+	int status = remove_repeated_chars(str);
+	fail_unless(status == 1);
+	fail_unless(strcmp(str, "") == 0);
+	free(str);
+}
+END_TEST
+
 Suite *get_suite(void)
 {
 	Suite *s = suite_create("string utils suite");
@@ -858,6 +898,13 @@ Suite *get_suite(void)
 	tcase_add_test(tc_string_distance, test_string_distance_empty_string);
 	tcase_add_test(tc_string_distance, test_string_distance_null_string);
 	suite_add_tcase(s, tc_string_distance);
+
+	TCase *tc_remove_repeated = tcase_create("tc_remove_repeated_chars");
+	tcase_add_test(tc_remove_repeated, test_remove_repeated_chars);
+	tcase_add_test(tc_remove_repeated, test_remove_repeated_chars_not_consecutive);
+	tcase_add_test(tc_remove_repeated, test_remove_repeated_chars_one_char);
+	tcase_add_test(tc_remove_repeated, test_remove_repeated_chars_empty);
+	suite_add_tcase(s, tc_remove_repeated);
 
 	return s;
 }

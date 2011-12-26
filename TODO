@@ -17,29 +17,28 @@ array:
 	insersion_sort
 	bubble_sort
 
-	binary_search
-	
+	binary_search - DONE
 
 
 MIXED
 
-	Given a tree, print the values contained at each level on the same line.- DONE
+		DONE - Given a tree, print the values contained at each level on the same line.
 
-	Find the min and max in an array. Now do it in less than 2n comparisons.- DONE
+		DONE - Find the min and max in an array. Now do it in less than 2n comparisons.
 
 	Compute the square root of a number down to a certain precision.
 
 	Find the maximum sum of a sub-sequence from an positive integer array 
-		where any two numbers of sub-sequence are not adjacent to each 
-		other in the original sequence
+	where any two numbers of sub-sequence are not adjacent to each 
+	other in the original sequence
 
-	Given an array of integers, now we want to erase all X's		- DONE
+		DONE - Given an array of integers, now we want to erase all X's
 
 	Given a list of words with a same size and a big string that contains 
-		one of the permutation of all the words combined(say p), find 
-		the startindex of the string p in the big string
+	one of the permutation of all the words combined(say p), find 
+	the startindex of the string p in the big string
 
-	Write the actual code to reverse a linked list
+		DONE - Write the actual code to reverse a linked list		
 
 	Write the actual code to parse a regular expression
 
@@ -47,21 +46,21 @@ MIXED
 
 	Search needle in haystack problem
 
-	Implement a function rotateArray(vector<int> arr, int r)
+		DONE - Implement a function rotateArray(vector<int> arr, int r) - DONE
 
 	Find Kth smallest element in a BST.
 
 	Implement a queue data structure given only stacks.
 
-	Given a Binary Search Tree, iterate over the elements without using recursion.
+		DONE - Given a Binary Search Tree, iterate over the elements without using recursion. [use queue or stack will work]
 
 	Print a singly-linked list backwards, in constant space and linear time.
 
-	Convert a binary search tree to a sorted, circular, doubly-linked list, in place (using the tree nodes as the new list nodes).
+	TODO - Convert a binary search tree to a sorted, circular, doubly-linked list, in place (using the tree nodes as the new list nodes).
 
 	Given a set of words, group them into sets of anagrams.
 
-	Given a string, remove all the duplicate characters (not necessarily consecutive)
+		DONE - Given a string, remove all the duplicate characters (not necessarily consecutive)
 
 	Given a list of n objects, write a function that outputs the minimum set of numbers that sum to at least K. FOLLOW UP: can you beat O(n ln n)?
 
@@ -71,7 +70,8 @@ MIXED
 
 	Print a binary tree in infix order. Recursive and iterative.
 
-	Write a code to convert an ASCII representation of a positive integer to it's numeric value.
+		DONE - Write a code to convert an ASCII representation of a positive integer to it's numeric value.
+		DONE - !(Write a code to convert an ASCII representation of a positive integer to it's numeric value).
 
 
 

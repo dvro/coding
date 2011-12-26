@@ -20,6 +20,8 @@ int remove_quotes (char *str);
 int remove_substring (char *str, char *substring);
 
 int remove_chars (char *str, char *chars);
+
+int remove_repeated_chars(char *str);
 //TODO
 int match_re(char *str, char *re);
 
