@@ -23,9 +23,9 @@ array:
 
 MIXED
 
-	Given a tree, print the values contained at each level on the same line. - DONE
+	Given a tree, print the values contained at each level on the same line.- DONE
 
-	Find the min and max in an array. Now do it in less than 2n comparisons. - DONE
+	Find the min and max in an array. Now do it in less than 2n comparisons.- DONE
 
 	Compute the square root of a number down to a certain precision.
 
@@ -33,7 +33,7 @@ MIXED
 		where any two numbers of sub-sequence are not adjacent to each 
 		other in the original sequence
 
-	Given an array of integers, now we want to erase all X's
+	Given an array of integers, now we want to erase all X's		- DONE
 
 	Given a list of words with a same size and a big string that contains 
 		one of the permutation of all the words combined(say p), find 

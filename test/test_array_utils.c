@@ -185,6 +185,23 @@ START_TEST (test_find_min_max_3)
 }
 END_TEST
 
+START_TEST (test_erase_all)
+{
+	int *array = (int *)calloc(9, sizeof(int));
+	int i;
+	for (i = 0; i < 9; i++)
+		array[i] = i % 2 + 1;
+
+	int len = erase_all_x(&array, 9, 1);
+	fail_unless(len == 4, "len = %d", len);
+
+	for (i = 0; i < len; i++)
+		fail_unless(array[i] == 2);
+	free(array);
+}
+END_TEST
+
+
 
 Suite *get_array_utils_suite(void)
 {
@@ -215,6 +232,10 @@ Suite *get_array_utils_suite(void)
 	tcase_add_test(tc_find_min_max, test_find_min_max_3);
 	suite_add_tcase(s, tc_find_min_max);
 	
+	TCase *tc_erase_all_x = tcase_create("tc_erase_all_x");
+	tcase_add_test(tc_erase_all_x, test_erase_all);
+	suite_add_tcase(s, tc_erase_all_x);
+
 	return s;
 }
 

@@ -113,6 +113,31 @@ int find_max_and_min (int array[], int len, int *min, int *max)
 	return 1;
 }
 
+int erase_all_x(int **array, int len, int x)
+{
+	if (*array == NULL)
+		return 0;
+	if (len <= 0)
+		return 0;
+
+	int *nums = *array;
+
+	int count = 0;
+
+	int i = len - 1;
+	while (i >= 0) {
+		if (nums[i] == x) {
+			int j;
+			for (j = i; j < len - 1; j++)
+				nums[j] = nums[j+1];
+			count++;
+		}
+		i = i - 1;
+	}
+
+	return len - count;
+}
+
 
 
 

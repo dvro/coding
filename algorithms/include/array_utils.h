@@ -20,6 +20,7 @@ int merge_sort (int *array, int len);
  * Find the min and max value in O(3n/2)
  */
 int find_max_and_min (int array[], int len, int *min, int *max);
+int erase_all_x(int **array, int len, int x);
 
 #endif
 
