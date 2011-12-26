@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+//TODO test it
 int max_subarray_sum (int array[], int len, int *ini, int *end);
 
 /**
