@@ -29,7 +29,7 @@ MIXED
 
 		DONE - Find the min and max in an array. Now do it in less than 2n comparisons.
 
-	Compute the square root of a number down to a certain precision.
+		DONE - Compute the square root of a number down to a certain precision.
 
 	Find the maximum sum of a sub-sequence from an positive integer array 
 	where any two numbers of sub-sequence are not adjacent to each 
@@ -51,7 +51,7 @@ MIXED
 
 		DONE - Implement a function rotateArray(vector<int> arr, int r) - DONE
 
-	Find Kth smallest element in a BST.
+		DONE - Find Kth smallest element in a BST.
 
 	Implement a queue data structure given only stacks.
 

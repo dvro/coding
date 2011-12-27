@@ -3,6 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int square(float value, float precision);
+float square(float value, float precision);
 
 #endif

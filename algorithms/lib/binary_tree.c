@@ -129,3 +129,38 @@ void print_levels(struct tree_node *root)
 	printf(";\n");
 }
 
+struct tree_node *get_kth_smallest(struct tree_node *root, int k, int *current_k)
+{
+	if (root == NULL)
+		return NULL;
+
+	struct tree_node *tmp;
+
+	tmp = get_kth_smallest(root->left, k, current_k);
+	if (tmp != NULL)
+		return tmp;
+
+	*current_k = *current_k + 1;
+	if (*current_k == k)
+		return root;
+
+	tmp = get_kth_smallest(root->right, k, current_k);
+	if (tmp != NULL)
+		return tmp;
+
+	return NULL;
+}
+
+
+struct tree_node *get_kth_smallest_element(struct tree_node *root, int k)
+{
+	int current_k = 0;
+	return get_kth_smallest(root, k, &current_k);
+}
+
+
+
+
+
+
+

@@ -23,5 +23,7 @@ int rem_node (struct tree_node **root, struct tree_node *to_remove);
 int add_node_balance (struct tree_node **root, char *data);
 int rem_node_balance (struct tree_node **root, struct tree_node *to_remove);
 
+struct tree_node *get_kth_smallest_element(struct tree_node *root, int k);
+
 #endif
 

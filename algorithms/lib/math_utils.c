@@ -6,11 +6,11 @@
 #define MAX(a,b) a>b?a:b
 #define ABS(x) x<0?-x:x
 
-int square(float value, float precision)
+float square(float value, float precision)
 {
-	int x = 1.0;
-	while (ABS(x**2 - value) >= precision) {
-		x = x - (x**2 - value)/(2*x);
+	float x = 1.0;
+	while (ABS(x*x - value) >= precision) {
+		x = x - (x*x - value)/(2*x);
 	}
 	return x;
 }
