@@ -25,5 +25,7 @@ int erase_all_x(int **array, int len, int x);
 
 int rotate_array(int **array, int len, int n);
 
+int merge_n_into_2n(int **a, int **b, int n);
+
 #endif
 

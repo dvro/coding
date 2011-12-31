@@ -166,6 +166,39 @@ int rotate_array(int **array, int len, int n)
 }
 
 
+void shift(int *array, int i, int j)
+{
+	int t;
+	for (t = j; t >= i; t--)
+		array[t+1] = array[t];
+
+}
+
+
+int merge_n_into_2n(int **a, int **b, int n)
+{
+	int *array_a = *a;
+	int *array_b = *b;
+
+	int i = 0;
+	int j = 0;
+	
+	while (i < n && j < 2*n) {
+		if (array_a[i] >= array_b[j]) {
+			j++;
+		} else {
+			shift(array_b, j, 2 * n - 2);
+			array_b[j++] = array_a[i++];
+		}
+	}
+
+	while (i < n) {
+		array_b[j++] = array_a[i++];
+	}
+
+	return 1;
+}
+
 
 
 

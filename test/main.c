@@ -1,33 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <binary_tree.h>
+#include <array_utils.h>
 
 int main(void)
 {
-	struct tree_node *root = create_tree("5");
-	root->left = create_tree("2");
-	root->left->left = create_tree("1");
-	root->left->right = create_tree("3");
-	root->left->right->right = create_tree("4");
-	
-	root->right = create_tree("10");
-	root->right->left = create_tree("7");
-	root->right->left->left = create_tree("6");
-	root->right->left->right = create_tree("8");
-	root->right->left->right->right = create_tree("9");
+	int *array_a = (int *) calloc(5, sizeof(int));
+	int *array_b = (int *) calloc(10, sizeof(int));
 
+	int a[] = {1, 3, 5, 7, 9};
+	int b[] = {2, 4, 6, 8, 10};
 
 	int i;
-	for (i = 0; i < 15; i++) {
-		struct tree_node *tmp = get_kth_smallest_element(root, i);
-		if (tmp == NULL)
-			printf("NULL\n");
-		else
-			printf("%s\n", tmp->data);
-
+	for (i = 0; i < 5; i++) {
+		array_a[i] = a[i];
+		array_b[i] = b[i];
 	}
+	
+	int status = merge_n_into_2n(&array_a, &array_b, 5);
+	printf("status = %d\n", status);
 
-	delete_tree(&root);
+	for (i = 0; i < 10; i++)
+		printf("%d ", array_b[i]);
+	printf("\n");
 
 	return 0;
 }
